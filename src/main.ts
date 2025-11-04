@@ -9,7 +9,7 @@ async function bootstrap() {
 
   // Enable CORS for Angular frontend
   app.enableCors({
-    origin: 'http://localhost:52177',
+    origin: 'https://incomparable-flan-d922d0.netlify.app/',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
