@@ -1,0 +1,32 @@
+import { DataSource, Repository } from 'typeorm';
+import { Ticket } from './entities/ticket.entity';
+import { CreateTicketDto } from './dto/create-ticket.dto';
+import { UpdateTicketDto } from './dto/update-ticket.dto';
+import { User } from 'src/user/entities/user.entity';
+import { Department } from 'src/department/entities/department.entity';
+import { TicketCategory } from 'src/ticket-category/entities/ticket-category.entity';
+import { TicketPriority } from 'src/ticket-priority/entities/ticket-priority.entity';
+import { TicketStatus } from 'src/ticket-status/entities/ticket-status.entity';
+export declare class TicketService {
+    private readonly ticketRepository;
+    private readonly userRepository;
+    private readonly departmentRepository;
+    private readonly categoryRepository;
+    private readonly priorityRepository;
+    private readonly statusRepository;
+    private readonly dataSource;
+    constructor(ticketRepository: Repository<Ticket>, userRepository: Repository<User>, departmentRepository: Repository<Department>, categoryRepository: Repository<TicketCategory>, priorityRepository: Repository<TicketPriority>, statusRepository: Repository<TicketStatus>, dataSource: DataSource);
+    create(createDto: CreateTicketDto): Promise<Ticket>;
+    findAll(): Promise<Ticket[]>;
+    findOne(id: string): Promise<Ticket>;
+    update(id: string, updateTicketDto: UpdateTicketDto): Promise<Ticket>;
+    remove(id: string): Promise<Ticket>;
+    private generateTicketNumber;
+    findByRequester(requester_id: string): Promise<Ticket[]>;
+    findByDepartment(department_id: string): Promise<Ticket[]>;
+    findByDepartmentAndStatus(department_id: string, status_id: string): Promise<Ticket[]>;
+    findByStatus(status_id: string): Promise<Ticket[]>;
+    countAll(): Promise<number>;
+    countByStatus(status_id: string): Promise<number>;
+    countByDepartmentAndStatus(department_id: string, statusName: string): Promise<number>;
+}

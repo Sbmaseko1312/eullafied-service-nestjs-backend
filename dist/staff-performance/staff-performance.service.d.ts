@@ -1,0 +1,31 @@
+import { Repository } from 'typeorm';
+import { StaffPerformanceCounter } from './entities/staff-performance.entity';
+import { Ticket } from '../ticket/entities/ticket.entity';
+import { TicketAssignment } from '../ticket-assignment/entities/ticket-assignment.entity';
+export declare class StaffPerformanceService {
+    private readonly performanceRepo;
+    private readonly ticketRepo;
+    private readonly assignmentRepo;
+    private readonly logger;
+    constructor(performanceRepo: Repository<StaffPerformanceCounter>, ticketRepo: Repository<Ticket>, assignmentRepo: Repository<TicketAssignment>);
+    updatePerformanceMetrics(): Promise<void>;
+    private updateStaffMetrics;
+    private getActiveStaffMembers;
+    private getResolvedTicketsForWeek;
+    private calculateAverageResolution;
+    private upsertPerformanceRecord;
+    private ensurePerformanceRecord;
+    private getToday;
+    private getStartOfWeek;
+    private getEndOfWeek;
+    create(createDto: any): Promise<StaffPerformanceCounter>;
+    update(userId: string, metricDate: string, updateDto: any): Promise<StaffPerformanceCounter>;
+    remove(userId: string, metricDate: string): Promise<StaffPerformanceCounter>;
+    findByUser(userId: string): Promise<StaffPerformanceCounter[]>;
+    getCurrentWeekPerformance(userId: string): Promise<StaffPerformanceCounter | null>;
+    findByUserAndDateRange(userId: string, startDate: Date, endDate: Date): Promise<StaffPerformanceCounter[]>;
+    getTopPerformers(limit?: number): Promise<StaffPerformanceCounter[]>;
+    findAll(): Promise<StaffPerformanceCounter[]>;
+    findOne(userId: string, metricDate: string): Promise<StaffPerformanceCounter>;
+    recalculateCurrentWeek(): Promise<void>;
+}
