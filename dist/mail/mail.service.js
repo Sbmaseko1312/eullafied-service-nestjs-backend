@@ -69,7 +69,7 @@ let MailService = class MailService {
         return info;
     }
     async sendingUserCreated(email, name, tempPassword) {
-        const subject = 'Welcome! Your Account Has Been Created';
+        const subject = 'Welcome to Eullafied Service! Your Account Has Been Created';
         const html = `
       <!DOCTYPE html>
       <html>

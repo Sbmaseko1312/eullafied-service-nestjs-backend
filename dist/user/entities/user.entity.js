@@ -67,7 +67,7 @@ __decorate([
     __metadata("design:type", Date)
 ], User.prototype, "assigned_at", void 0);
 __decorate([
-    (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp' }),
+    (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' }),
     __metadata("design:type", Date)
 ], User.prototype, "updated_at", void 0);
 __decorate([

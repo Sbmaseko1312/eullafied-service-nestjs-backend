@@ -8,7 +8,7 @@ const auth_guard_1 = require("./auth/auth.guard");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors({
-        origin: 'http://localhost:52177',
+        origin: 'https://incomparable-flan-d922d0.netlify.app/',
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
         credentials: true,
     });

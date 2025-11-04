@@ -4,15 +4,17 @@ exports.typeOrmConfigAsync = void 0;
 const config_1 = require("@nestjs/config");
 class TypeOrmConfig {
     static getOrmConfig(configService) {
+        const isProduction = process.env.NODE_ENV === 'production';
         return {
             type: 'mysql',
-            host: configService.get('DB_HOST'),
-            port: configService.get('DB_PORT'),
-            username: configService.get('DB_USERNAME'),
-            password: configService.get('DB_PASSWORD'),
-            database: configService.get('DB_NAME'),
+            url: configService.get('DATABASE_URL'),
             entities: ['dist/**/*.entity.js'],
-            synchronize: true
+            synchronize: true,
+            ssl: isProduction
+                ? {
+                    rejectUnauthorized: false,
+                }
+                : false,
         };
     }
 }
@@ -20,6 +22,6 @@ exports.default = TypeOrmConfig;
 exports.typeOrmConfigAsync = {
     imports: [config_1.ConfigModule],
     useFactory: async (configService) => TypeOrmConfig.getOrmConfig(configService),
-    inject: [config_1.ConfigService]
+    inject: [config_1.ConfigService],
 };
 //# sourceMappingURL=typeorm.config.js.map
